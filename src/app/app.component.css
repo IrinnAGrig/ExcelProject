@@ -1,0 +1,27 @@
+nav {
+    height: 60px;
+    background-color: #40A578;
+    border-bottom: 3px solid #0A6847;
+
+    ul {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 10px;
+        padding-top: 5px;
+        color: white;
+    }
+
+    li {
+        padding: 0 10px;
+    }
+
+    li.active {
+        background-color: #0A6847;
+    }
+}
+
+.layout {
+    width: 80%;
+    margin: 50px auto;
+
+}

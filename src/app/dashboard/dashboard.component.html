@@ -1,0 +1,69 @@
+<div class="dashpage">
+    <div class="projects-part" [ngClass]="{'active': !extendedBarProj}">
+        <div class="arrow-extension" (click)="extendedBarProj = !extendedBarProj"><img
+                src="../../assets/images/arrow-icon.png" height="29"
+                [ngClass]="extendedBarProj ? 'no-extend' : 'to-extend'"></div>
+        <form (ngSubmit)="search()" class="form-inline">
+            <input class="form-control mr-sm-2" [(ngModel)]="searchTerm" name="searchTerm" type="search"
+                placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">
+                <img src="../../assets/images/search-icon.png" height="20">
+            </button>
+        </form>
+
+        <div *ngIf="projects.length > 0" class="projects">
+            <div *ngFor="let project of filteredProjects" class="project" (click)="selectProject(project.id)">
+                <h6>{{project.name}}</h6>
+                <div class="extension-container">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="projects.length == 0" class="projects">
+            <p>No projects.</p>
+        </div>
+    </div>
+    <div class="selected-project-part" [ngClass]="{'disabled': isNewFile}">
+        <div class="bar-settings">
+            <form class="save-project" [formGroup]="nameForm" *ngIf="isNewFile">
+                <input class="mr-sm-2" type="text" placeholder="Name" aria-label="Name" formControlName="name">
+                <button class="btn btn-outline-dark" (click)="addProject()" [disabled]="nameForm.invalid">Save</button>
+                <button class="btn btn-outline-dark" (click)="cancelSaveProject()">Cancel</button>
+            </form>
+            <div *ngIf="!isNewFile && file">
+                <h6 class="mt-1">{{selectedProject?.name}}</h6>
+            </div>
+        </div>
+        <div class="table-container">
+            <div *ngIf="file">
+                <table class="google-sheets-table">
+                    <thead>
+                        <tr>
+                            <td *ngFor="let header of file.headers; let index = index; trackBy: trackByIndex"
+                                class="header" [ngClass]="{'focus': ('-1/|' + header) == focusElement}"
+                                (click)="focusElement = '-1/|' + header"><input [(ngModel)]="file.headers[index]"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of file.fields; let xPos = index; trackBy: trackByIndex">
+                            <td *ngFor="let cell of row; let yPos = index; trackBy: trackByIndex"
+                                [ngClass]="{'focus': focusElement == (xPos + '/|' + yPos)}"
+                                (click)="focusElement = xPos + '/|' + yPos"><input
+                                    [(ngModel)]="file.fields[xPos][yPos]"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div *ngIf="!file">
+                <p>{{'No project selected.' | uppercase}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="selectedProject" class="futter-part">
+        <div *ngFor="let fileProj of selectedProject.files" (click)="selectFile(fileProj)"
+            [ngClass]="{'active': file && file.sheetName == fileProj.sheetName}">
+            <p>{{fileProj.sheetName}}</p>
+        </div>
+    </div>
+</div>

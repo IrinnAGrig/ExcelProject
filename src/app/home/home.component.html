@@ -1,0 +1,76 @@
+<div class="row" style="margin-top: 5rem;">
+    <div class="col-lg-8">
+        <div class="container" appDnd (fileDropped)="onFileDropped($event, 'excel')">
+            <input type="file" #fileDropRef id="fileDropRef" accept=".xlsx, .xls"
+                (change)="fileBrowseHandler($event, 'excel')" />
+            <img src="../../assets/images/upload-icon.png" height="50">
+
+            <h3>Drag and drop file here</h3>
+            <h3>or</h3>
+            <label for="fileDropRef">Browse for file</label>
+        </div>
+        <div class="files-list" *ngIf="isExcell  && files.length > 0">
+            <div class="single-file" *ngFor="let file of files;">
+                <div class="file-icon" style="width: 50px">
+                    <img src="../../assets/images/excell-file.jpg" height="30">
+                </div>
+                <div class="info">
+                    <h4 class="name">
+                        {{ file.file.name }}
+                    </h4>
+                    <p class="size">
+                        {{ file.file.size | bytesFormat: 2 }}
+                    </p>
+                    <app-progress [progress]="file.progress"></app-progress>
+                </div>
+
+                <div class="delete" (click)="deleteFile()">
+                    <img src="../../assets/images/delete-icon.png" height="35">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 text-center transform-part">
+        <img src="../../assets/images/Excel-icon.png" height="230">
+        <button class="btn btn-success mt-4" [disabled]="!isExcell || files.length == 0"
+            (click)="manageFile()">Transform</button>
+    </div>
+</div>
+<div class="row" style="margin-top: 4rem;">
+    <div class="col-lg-4 text-center">
+        <img src="../../assets/images/pdf-icon.png" height="230">
+        <button class="btn btn-success mt-4" [disabled]="isExcell  || files.length == 0" (click)="manageFilePDF()"
+            style="background-color: #7D0A0A;">Transform</button>
+    </div>
+    <div class="col-lg-8">
+        <div class="container" appDnd (fileDropped)="onFileDropped($event, 'pdf')">
+            <input type="file" #fileDropRef id="fileDropRef" accept=".pdf"
+                (change)="fileBrowseHandler($event, 'pdf')" />
+            <img src="../../assets/images/upload-icon.png" height="50">
+
+            <h3>Drag and drop file here</h3>
+            <h3>or</h3>
+            <label for="fileDropRef" style="background-color: #7D0A0A;">Browse for file</label>
+        </div>
+        <div class="files-list" *ngIf="!isExcell && files.length > 0">
+            <div class="single-file" *ngFor="let file of files;">
+                <div class="file-icon" style="width: 50px">
+                    <img src="../../assets/images/excell-file.jpg" height="30">
+                </div>
+                <div class="info">
+                    <h4 class="name">
+                        {{ file.file.name }}
+                    </h4>
+                    <p class="size">
+                        {{ file.file.size }}
+                    </p>
+                    <app-progress [progress]="file.progress"></app-progress>
+                </div>
+
+                <div class="delete" (click)="deleteFile()">
+                    <img src="../../assets/images/delete-icon.png" height="35">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
