@@ -14,6 +14,9 @@ To authenticate:
     password: 123456
     
 # Images
+Tests int he project are made for learning
+![Screenshot 2024-06-10 094934](https://github.com/IrinnAGrig/ExcelProject/assets/98234061/294c23d1-e35e-4495-8683-e98bada30aaf)
+
 The part with pdf doesn't work
 ![Screenshot 2024-06-10 113220](https://github.com/IrinnAGrig/ExcelProject/assets/98234061/3b7cff48-b80e-4d05-bd27-d72122364d48)
 
