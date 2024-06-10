@@ -12,3 +12,13 @@ Get excel data from excel file and display with possibility to modify. More dedi
 To authenticate:
     email: user1@gmail.com
     password: 123456
+    
+# Images
+The part with pdf doesn't work
+![Screenshot 2024-06-10 113220](https://github.com/IrinnAGrig/ExcelProject/assets/98234061/3b7cff48-b80e-4d05-bd27-d72122364d48)
+
+Dasboard
+![Screenshot 2024-06-10 113236](https://github.com/IrinnAGrig/ExcelProject/assets/98234061/7f203b65-7a29-42eb-85f0-1c4fc12c5635)
+
+Can modify table
+![Screenshot 2024-06-10 113301](https://github.com/IrinnAGrig/ExcelProject/assets/98234061/ab9c9d87-cd37-4016-9d4a-ef3d1f04c1c7)
